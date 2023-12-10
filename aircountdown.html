@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>何都エアの歌枠までカウントダウン</title>
+</head>
+<style type="text/css">
+	body {
+		background: black;
+		margin: 0;
+		padding: 0;
+		animation: background 5s infinite;
+	}
+	.content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		overflow: hidden;
+	}
+	.timer {
+		color: white;
+		text-align: center;
+		font-size: 5vw;
+	}
+	@keyframes background {
+		0% {
+			background-color: black;
+		}
+		50% {
+			background-color: green;
+		}
+		100% {
+			background-color: black;
+		}
+	}
+	.air {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		text-align: center;
+	}
+	.air img {
+		width: 200px;
+		animation: air 0.1s infinite;
+	}
+	@keyframes air {
+		0% {transform: translate(0px, 0px) rotateZ(0deg)}
+		25% {transform: translate(2px, 2px) rotateZ(1deg)}
+		50% {transform: translate(0px, 2px) rotateZ(0deg)}
+		75% {transform: translate(2px, 0px) rotateZ(-1deg)}
+		100% {transform: translate(0px, 0px) rotateZ(0deg)}
+	}
+</style>
+<body>
+
+	<div class="content">
+		<div class="timer">
+			何都エアが歌枠をやるまで<br>
+			あと<br>
+			<span id="time"></span>
+		</div>
+	</div>
+	<div class="air">
+		<img src="./air.png">
+	</div>
+
+	<script type="text/javascript">
+		const count = function() {
+			const start = Date.parse('2026-6-10 21:30:00');
+			const time = start - Date.now();
+			const date = Math.floor(time / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((time / 1000 / 60 / 60) % 24);
+			const minutes = Math.floor((time / 1000 / 60) % 60);
+			const secounds = Math.floor((time / 1000) % 60);
+			document.getElementById('time').innerHTML = `${date}日と${hours}時間${minutes}分${secounds}秒`;
+		}
+		count();
+		setInterval(count, 100);
+	</script>
+</body>
+</html>
